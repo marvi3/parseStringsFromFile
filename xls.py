@@ -42,7 +42,7 @@ def add_strings_to_row(row_index, file_name, strings):
 # The row starts at 0
 def modifyRow(row, file, data):
     try:
-        df = pd.read_csv(file)
+        df = pd.read_csv(file, header=0)
     except FileNotFoundError:
         print("being in excpetion")
         df = pd.DataFrame()
