@@ -56,9 +56,6 @@ def modifyRow(row, file, data):
         extraCols = len(data) - len(df.columns)
         for i in range(extraCols):
             df[f'Column_{len(df.columns) + 1}'] = pd.NA
-    print("We are in row:",row)
-    print("The rows existing after are", len(df))
-    print("The columns existing are", len(df.columns))
     df.iloc[row,0:len(data)] = data
     df.to_csv(file, index=False, header=False)
 

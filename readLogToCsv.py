@@ -100,11 +100,9 @@ else:
             startIndex = endIndex
             entryResult = parseString.getSubstringLengthList(logEntryString, startStringList, stringLengthList, occList, True, cutFromBeginningList)
             xls.modifyRow(entryNumber, sys.argv[2], entryResult)
-            print("The entryNumber and numOfEntries are:", entryNumber, numOfEntries)
             if entryNumber == numOfEntries:
                 break
             entryNumber += 1
         else:
             break
-        print("             sssssssssssssssssss tttttttttttttttttttttttttttttttttttttttttttt")
         
