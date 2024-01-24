@@ -21,6 +21,7 @@ def modifyRow(row, file, data):
     try:
         df = pd.read_csv(file)
     except FileNotFoundError:
+        print("being in excpetion")
         df = pd.DataFrame()
     
     if row >= len(df):
