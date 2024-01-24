@@ -4,10 +4,18 @@ import pandas as pd
 import openpyxl
 
 # A method that modifies only one cell
-# The row and col start at 1
+# The row and col start at 0
 def modifyCell(row, col, file, data):
   df.read_excel(file)
   df.iloc[row, col] = data
+  df.to_excel(file, index=False, columns=False)
+
+# A method that modifies one row of an excel sheet
+# The row starts at 0
+def modifyRow(row, file, data):
+  df.read_excel(file)
+  for i in range(len(data)):
+    df.iloc[row, i] = data[i]
   df.to_excel(file, index=False, columns=False)
 
 # A method that writes a two-dimensional array to an excel sheet.
