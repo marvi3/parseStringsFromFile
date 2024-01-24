@@ -76,7 +76,7 @@ logResult = []
 entryNumber = 0
 startIndex = 0
 endIndex = 0
-numOfEntries = sys.argv[3]
+numOfEntries = int(sys.argv[3])
 if sys.argv[3] == 0:
     while True:
         entryResult = []
@@ -101,10 +101,10 @@ else:
             entryResult = parseString.getSubstringLengthList(logEntryString, startStringList, stringLengthList, occList, True, cutFromBeginningList)
             xls.modifyRow(entryNumber, sys.argv[2], entryResult)
             print("The entryNumber and numOfEntries are:", entryNumber, numOfEntries)
+            if entryNumber == numOfEntries:
+                break
+            entryNumber += 1
         else:
             break
         print("             sssssssssssssssssss tttttttttttttttttttttttttttttttttttttttttttt")
-        if entryNumber == numOfEntries:
-            print("              tttttttttttttttttttttttttttttttttttttttttttt")
-            break
-        entryNumber += 1
+        
