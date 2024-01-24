@@ -15,7 +15,7 @@ def modifyCell(row, col, file, data):
         df.loc[row, col] = data.strip()
     df.to_csv(file, index=False, header=False)
 
-# A method that modifies one row of an excel sheet
+# A method that modifies one row of an Csv sheet
 # The row starts at 0
 def modifyRow(row, file, data):
     try:
@@ -29,13 +29,13 @@ def modifyRow(row, file, data):
             df.loc[i, row] = data[i].strip()
     df.to_csv(file, index=False, header=False)
 
-# A method that writes a two-dimensional array to an excel sheet.
-# It might overwrite existing excel sheets
+# A method that writes a two-dimensional array to an Csv sheet.
+# It might overwrite existing Csv sheets
 # The row and col start at 1
-def writeExcelFile(file, data):
+def writeCsvFile(file, data):
     df = pd.DataFrame(data)
-    df.to_excel(file)
+    df.to_csv(file)
 
-def writeExcelFileColRow(file, data, rowNames, columnNames):
+def writeCsvFileColRow(file, data, rowNames, columnNames):
     df = pd.DataFrame(data, index=rowNames, columns=columnNames)
-    df.to_excel(file)
+    df.to_csv(file)
