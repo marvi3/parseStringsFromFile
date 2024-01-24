@@ -6,25 +6,27 @@ import openpyxl
 # A method that modifies only one cell
 # The row and col start at 0
 def modifyCell(row, col, file, data):
-    df = pd.read_excel(file)
-    df.loc[row, col] = data.strip()
-    df.to_excel(file, index=False, header=False)
+    try:
+        df = pd.read_csv(file)
+        df.loc[row, col] = data.strip()
+    except:
+        print("being in excpetion")
+        df = pd.DataFrame([""])
+        df.loc[row, col] = data.strip()
+    df.to_csv(file, index=False, header=False)
 
 # A method that modifies one row of an excel sheet
 # The row starts at 0
 def modifyRow(row, file, data):
-    df = pd.read_csv(file)
-    for i in range(len(data)):
-        df.loc[row, i] = data[i].strip()
     try:
-        df = pd.read_excel(file)
+        df = pd.read_csv(file)
         for i in range(len(data)):
             df.loc[row, i] = data[i].strip()
     except:
         print("being in excpetion")
-        df = pd.DataFrame([data])
-#        for i in range(len(data)):
-#            df.loc[i, row] = data[i].strip()
+        df = pd.DataFrame([""])
+        for i in range(len(data)):
+            df.loc[i, row] = data[i].strip()
     df.to_csv(file, index=False, header=False)
 
 # A method that writes a two-dimensional array to an excel sheet.
