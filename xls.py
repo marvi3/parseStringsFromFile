@@ -20,14 +20,32 @@ def modifyCell(row, col, file, data):
 def modifyRow(row, file, data):
     try:
         df = pd.read_csv(file)
-#        for i in range(len(data)):
-#            df.loc[i, row] = data[i].strip()
+    except FileNotFoundError:
+        df = pd.DataFrame()
+    
+    if row >= len(df):
+        extraRows = row - len(df) + 1
+        df = pd.concat([df, pd.DataFrame([[''] * len(df.columns)] * extra_rows)], ignore_index=True)
+    
+    if len(data) > len(df.columns):
+        extra_cols = len(data) - len(df.columns)
+        for i in range(extra_cols):
+            df[f'Column_{len(df.columns) + 1}'] = pd.NA
+    
+    df.loc[row, :len(strings) - 1] = data
+    df.to_csv(file, index=False, header=False)
+
+def oldModifyRow(row, file, data):
+    try:
+        df = pd.read_csv(file)
+        for i in range(len(data)):
+            df.loc[i, row] = data[i].strip()
             df.loc[row] = data
     except:
         print("being in excpetion")
         df = pd.DataFrame([data])
-#        for i in range(len(data)):
-#            df.loc[i, row] = data[i].strip()
+        for i in range(len(data)):
+            df.loc[i, row] = data[i].strip()
     df.to_csv(file, index=False, header=False)
 
 # A method that writes a two-dimensional array to an Csv sheet.
