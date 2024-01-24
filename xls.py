@@ -7,7 +7,7 @@ import openpyxl
 # The row and col start at 0
 def modifyCell(row, col, file, data):
   df.read_excel(file)
-  df.iloc[row, col] = data
+  df.iloc[row, col] = data.strip()
   df.to_excel(file, index=False, columns=False)
 
 # A method that modifies one row of an excel sheet
@@ -15,7 +15,7 @@ def modifyCell(row, col, file, data):
 def modifyRow(row, file, data):
   df.read_excel(file)
   for i in range(len(data)):
-    df.iloc[row, i] = data[i]
+    df.iloc[row, i] = data[i].strip()
   df.to_excel(file, index=False, columns=False)
 
 # A method that writes a two-dimensional array to an excel sheet.
