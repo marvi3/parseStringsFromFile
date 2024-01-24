@@ -86,7 +86,7 @@ while True:
         entryResult = parseString.getSubstringLengthList(logEntryString, startStringList, stringLengthList, occList, True, cutFromBeginningList)
         print(sys.argv[2])
         print(entryResult)
-        xls.modifyRow(entryNumber, sys.argv[2], entryResult)
+        xls.add_strings_to_row(entryNumber, sys.argv[2], entryResult)
         if entryNumber == 1:
             break
         entryNumber += 1
