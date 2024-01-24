@@ -76,7 +76,6 @@ logResult = []
 entryNumber = 0
 startIndex = 0
 endIndex = 0
-xls.writeCsvFile(sys.argv[2], [""])
 while True:
     entryResult = []
     endIndex = fileContent.find("__________", endIndex + 1)
