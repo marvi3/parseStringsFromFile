@@ -83,7 +83,7 @@ def getSubstringLengthList(string, startStringList, stringLengthList, occList, c
                 startIndex += cutFromBeginningList[i]
                 if cutStartString:
                     startString += len(startStingList[i])
-                resultStringList.append(string[startIndex:endIndex])
+                resultStringList.append(string[startIndex:endIndex].strip())
             else:
                 # This adds an empty string, so that the order is not interrupted
                 resultStringList.append("")
