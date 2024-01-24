@@ -56,6 +56,38 @@ def getSubstringLength(string, startString, n, occurenceList, occurenceOutOf):
 
     return resultString
 
+def getSubstringLengthList(string, startStringList, stringLengthList, occList, cutStartString=False, cutFromBeginningList=0):
+    resultStringList = []
+    startIndex = -1
+    endIndex = -1
+
+    if cutFromBeginningList == 0:
+        cutFromBeginningList = [0] * len(startStringList)
+    
+    if len(startStringList) != len(stringLengthList):
+        print("startStringList, stringLengthList and occList must have the same length")
+        sys.exit(0)
+    if len(startStringList) != len(occList):
+        print("startStringList, stringLengthList and occList must have the same length")
+        sys.exit(0)
+    if len(startStringList) != len(cutFromBeginningList):
+        print("startStringList, stringLengthList and occList must have the same length")
+        sys.exit(0)
+    
+    for i in range(len(startStringList)):
+        for j in range(occList[i]):
+            startIndex = string.find(startStringList[i], endIndex + 1)
+            # Check if the substring is found
+            if startIndex != -1:
+                endIndex = startIndex + stringLengthList[i]
+                startIndex += cutFromBeginningList[i]
+                if cutStartString:
+                    startString += len(startStingList[i])
+                resultStringList.append(string[startIndex:endIndex])
+            else:
+                # This adds an empty string, so that the order is not interrupted
+                resultStringList.append("")
+
 def getSubstringCharacter(string, startString, endString, inclEndString, occurenceList, occurenceOutOf):
     resultString = ""
     endIndex = -1
