@@ -25,11 +25,11 @@ def modifyRow(row, file, data):
     
     if row >= len(df):
         extraRows = row - len(df) + 1
-        df = pd.concat([df, pd.DataFrame([[''] * len(df.columns)] * extra_rows)], ignore_index=True)
+        df = pd.concat([df, pd.DataFrame([[''] * len(df.columns)] * extraRows)], ignore_index=True)
     
     if len(data) > len(df.columns):
-        extra_cols = len(data) - len(df.columns)
-        for i in range(extra_cols):
+        extraCols = len(data) - len(df.columns)
+        for i in range(extraCols):
             df[f'Column_{len(df.columns) + 1}'] = pd.NA
     print(row)
     df.iloc[row,0:len(data)] = data
