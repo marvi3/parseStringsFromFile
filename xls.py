@@ -20,8 +20,9 @@ def modifyCell(row, col, file, data):
 def modifyRow(row, file, data):
     try:
         df = pd.read_csv(file)
-        for i in range(len(data)):
-            df.loc[i, row] = data[i].strip()
+#        for i in range(len(data)):
+#            df.loc[i, row] = data[i].strip()
+            df.loc[row] = data
     except:
         print("being in excpetion")
         df = pd.DataFrame([data])
