@@ -77,7 +77,7 @@ entryNumber = 0
 startIndex = 0
 endIndex = 0
 numOfEntries = int(sys.argv[3])
-if sys.argv[3] == 0:
+if int(sys.argv[3]) == 0:
     while True:
         print("Running until the whole file has been processed.")
         entryResult = []
