@@ -65,7 +65,7 @@ cutFromBeginningList.append(103)
 startStringList.append("Durchschn.:")
 stringLengthList.append(97)
 occList.append(64)
-cutFromBeginningList.append(5)
+cutFromBeginningList.append(3)
 #   %usr
 #   %sys
 #   %iowait
