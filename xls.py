@@ -18,7 +18,9 @@ def modifyRow(row, file, data):
         for i in range(len(data)):
             df.iloc[i, row] = data[i].strip()
     except:
-        df = pd.DataFrame(data)
+        df = pd.DataFrame("")
+        for i in range(len(data)):
+            df.iloc[row, i] = data[i].strip()
     df.to_excel(file, index=False, header=False)
 
 # A method that writes a two-dimensional array to an excel sheet.
