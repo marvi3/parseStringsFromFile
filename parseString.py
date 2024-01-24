@@ -82,7 +82,7 @@ def getSubstringLengthList(string, startStringList, stringLengthList, occList, c
                 endIndex = startIndex + stringLengthList[i]
                 startIndex += cutFromBeginningList[i]
                 if cutStartString:
-                    startIndex += len(startStingList[i])
+                    startIndex += len(startStringList[i])
                 
                 resultStringList = resultStringList + string[startIndex:endIndex].strip().split()
             else:
