@@ -46,8 +46,8 @@ def modifyRow(row, file, data):
     except FileNotFoundError:
         print("being in excpetion")
         df = pd.DataFrame()
-    print(len(df))
-    print(len(df.columns))
+    
+    print("The rows existing before are", len(df))
     if row >= len(df):
         extraRows = row - len(df) + 1
         df = pd.concat([df, pd.DataFrame([[''] * len(df.columns)] * extraRows)], ignore_index=True)
@@ -56,7 +56,9 @@ def modifyRow(row, file, data):
         extraCols = len(data) - len(df.columns)
         for i in range(extraCols):
             df[f'Column_{len(df.columns) + 1}'] = pd.NA
-    print(row)
+    print("We are in row:",row)
+    print("The rows existing after are", len(df))
+    print("The columns existing are", len(df.columns))
     df.iloc[row,0:len(data)] = data
     df.to_csv(file, index=False, header=False)
 
