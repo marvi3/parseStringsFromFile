@@ -90,6 +90,7 @@ def getSubstringLengthList(string, startStringList, stringLengthList, occList, c
                 print("     found string", i, j, string[startIndex:endIndex])
                 print("     and the split list", string[startIndex:endIndex].strip().split())
                 resultStringList = resultStringList + string[startIndex:endIndex].strip().split()
+                print(resultStringList)
             else:
                 # This adds an empty string, so that the order is not interrupted
                 resultStringList.append("")
