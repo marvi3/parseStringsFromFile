@@ -22,7 +22,7 @@ def modifyRow(row, file, data):
         df = pd.DataFrame([data])
 #        for i in range(len(data)):
 #            df.loc[i, row] = data[i].strip()
-    df.to_excel(file, index=False, header=False)
+    df.to_csv(file, index=False, header=False)
 
 # A method that writes a two-dimensional array to an excel sheet.
 # It might overwrite existing excel sheets
