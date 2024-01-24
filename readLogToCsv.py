@@ -79,32 +79,32 @@ endIndex = 0
 numOfEntries = argv[3]
 if argv[3] == 0:
     while True:
-    entryResult = []
-    endIndex = fileContent.find("__________", endIndex + 1)
-    if endIndex != -1:
-        logEntryString = fileContent[startIndex:endIndex]
-        entryResult.append(logEntryString.splitlines()[1])
-        startIndex = endIndex
-        entryResult = parseString.getSubstringLengthList(logEntryString, startStringList, stringLengthList, occList, True, cutFromBeginningList)
-        print(sys.argv[2])
-        print(entryResult)
-        xls.modifyRow(entryNumber, sys.argv[2], entryResult)
+        entryResult = []
+        endIndex = fileContent.find("__________", endIndex + 1)
+        if endIndex != -1:
+            logEntryString = fileContent[startIndex:endIndex]
+            entryResult.append(logEntryString.splitlines()[1])
+            startIndex = endIndex
+            entryResult = parseString.getSubstringLengthList(logEntryString, startStringList, stringLengthList, occList, True, cutFromBeginningList)
+            print(sys.argv[2])
+            print(entryResult)
+            xls.modifyRow(entryNumber, sys.argv[2], entryResult)
     else:
         break
 else:
     while True:
-    entryResult = []
-    endIndex = fileContent.find("__________", endIndex + 1)
-    if endIndex != -1:
-        logEntryString = fileContent[startIndex:endIndex]
-        entryResult.append(logEntryString.splitlines()[1])
-        startIndex = endIndex
-        entryResult = parseString.getSubstringLengthList(logEntryString, startStringList, stringLengthList, occList, True, cutFromBeginningList)
-        print(sys.argv[2])
-        print(entryResult)
-        xls.modifyRow(entryNumber, sys.argv[2], entryResult)
-        if entryNumber == numOfEntries:
-            break
-        entryNumber += 1
+        entryResult = []
+        endIndex = fileContent.find("__________", endIndex + 1)
+        if endIndex != -1:
+            logEntryString = fileContent[startIndex:endIndex]
+            entryResult.append(logEntryString.splitlines()[1])
+            startIndex = endIndex
+            entryResult = parseString.getSubstringLengthList(logEntryString, startStringList, stringLengthList, occList, True, cutFromBeginningList)
+            print(sys.argv[2])
+            print(entryResult)
+            xls.modifyRow(entryNumber, sys.argv[2], entryResult)
+            if entryNumber == numOfEntries:
+                break
+            entryNumber += 1
     else:
         break
