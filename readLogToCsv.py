@@ -73,9 +73,11 @@ cutFromBeginningList.append(5)
 #   %idle
 
 logResult = []
+roundNumber = 0
 entryNumber = 0
 startIndex = 0
 endIndex = 0
+xls.writeCsvFile(sys.argv[2], [""])
 while True:
     entryResult = []
     endIndex = fileContent.find("__________", endIndex + 1)
@@ -86,8 +88,8 @@ while True:
         entryResult = parseString.getSubstringLengthList(logEntryString, startStringList, stringLengthList, occList, True, cutFromBeginningList)
         print(sys.argv[2])
         print(entryResult)
-        xls.writeCsvFile(sys.argv[2], [""])
-        # xls.modifyRow(entryNumber, sys.argv[2], entryResult)
-        break
+        xls.modifyRow(entryNumber, sys.argv[2], entryResult)
+        if roundNumber = 3:
+            break
     else:
         break
