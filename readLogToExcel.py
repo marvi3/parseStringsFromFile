@@ -6,19 +6,22 @@
 import sys
 import xls
 import parseString
+import time
 
 # Checks if less then 3 arguments are existing.
 if len(sys.argv) < 3:
     print("Usage: python readDataToExcel.py fileNameToBeRead ExcelToWrite.xls")
     sys.exit(0)
 
+startTime = time.time()
 # opens the file to be read
 filePath = sys.argv[1]
 fileContent = parseString.readFile(filePath)
 if fileContent is None:
     print("The file is empty")
     sys.exit(0)
-print(f"The file {sys.argv[1]} has been opened.")
+endTime = time.time()
+print(f"The file {sys.argv[1]} has been opened. It took", endTime-startTime, "seconds.")
 
 
 startStringList = []
