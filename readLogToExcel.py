@@ -4,8 +4,8 @@
 #   
 
 import sys
-import xls.py as xls
-import parseString.py as parse
+import xls
+import parseString
 
 # Checks if less then 3 arguments are existing.
 if len(sys.argv) < 3:
@@ -14,7 +14,7 @@ if len(sys.argv) < 3:
 
 # opens the file to be read
 filePath = sys.argv[1]
-fileContent = parse.readFile(filePath)
+fileContent = parseString.readFile(filePath)
 if fileContent is None:
     print("The file is empty")
     sys.exit(0)
@@ -80,7 +80,7 @@ while True:
         logEntryString = fileContent[startIndex:endIndex]
         entryResult.append(logEntryString.splitlines()[0])
         startIndex = endIndex
-        entryResult = parse.getSubstringLengthList(logEntryString, startStringList, stringLengthList, occList, True, cutFromBeginningList)
+        entryResult = parseString.getSubstringLengthList(logEntryString, startStringList, stringLengthList, occList, True, cutFromBeginningList)
         xls.modifyRow(entryNumber, argv[2], entryResult)
         break
     else:
