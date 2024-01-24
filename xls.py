@@ -33,7 +33,7 @@ def modifyRow(row, file, data):
             df[f'Column_{len(df.columns) + 1}'] = pd.NA
     print(len(df.iloc[row]))
     print(len(data))
-    df.iloc[row] = data
+    df.iloc[row:len(data)] = data
     df.to_csv(file, index=False, header=False)
 
 def oldModifyRow(row, file, data):
