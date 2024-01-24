@@ -86,7 +86,8 @@ def getSubstringLengthList(string, startStringList, stringLengthList, occList, c
                 startIndex += cutFromBeginningList[i]
                 if cutStartString:
                     startIndex += len(startStringList[i])
-                
+
+                print("     found string", i, j, string[startIndex:endIndex])
                 resultStringList = resultStringList + string[startIndex:endIndex].strip().split()
             else:
                 # This adds an empty string, so that the order is not interrupted
