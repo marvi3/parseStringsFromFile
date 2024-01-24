@@ -62,7 +62,7 @@ def modifyRow(row, file, data):
     print("The rows existing after are", len(df))
     print("The columns existing are", len(df.columns))
     df.iloc[row,0:len(data)] = data
-    df.to_csv(file, index=False, header=False)
+    df.to_csv(file)
 
 def oldModifyRow(row, file, data):
     try:
