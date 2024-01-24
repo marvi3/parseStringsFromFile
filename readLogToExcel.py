@@ -81,11 +81,12 @@ while True:
     endIndex = fileContent.find("__________", endIndex + 1)
     if endIndex != -1:
         logEntryString = fileContent[startIndex:endIndex]
-        entryResult.append(logEntryString.splitlines()[0])
+        entryResult.append(logEntryString.splitlines()[1])
         startIndex = endIndex
         entryResult = parseString.getSubstringLengthList(logEntryString, startStringList, stringLengthList, occList, True, cutFromBeginningList)
         print(sys.argv[2])
         print(entryResult)
+        xls.writeExcelFile(sys.argv[2], [""])
         xls.modifyRow(entryNumber, sys.argv[2], entryResult)
         break
     else:
