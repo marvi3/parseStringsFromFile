@@ -76,8 +76,8 @@ logResult = []
 entryNumber = 0
 startIndex = 0
 endIndex = 0
-numOfEntries = argv[3]
-if argv[3] == 0:
+numOfEntries = sys.argv[3]
+if sys.argv[3] == 0:
     while True:
         entryResult = []
         endIndex = fileContent.find("__________", endIndex + 1)
