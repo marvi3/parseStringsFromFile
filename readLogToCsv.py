@@ -89,8 +89,8 @@ if argv[3] == 0:
             print(sys.argv[2])
             print(entryResult)
             xls.modifyRow(entryNumber, sys.argv[2], entryResult)
-    else:
-        break
+        else:
+            break
 else:
     while True:
         entryResult = []
@@ -106,5 +106,5 @@ else:
             if entryNumber == numOfEntries:
                 break
             entryNumber += 1
-    else:
-        break
+        else:
+            break
