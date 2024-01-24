@@ -61,9 +61,6 @@ def getSubstringLengthList(string, startStringList, stringLengthList, occList, c
     startIndex = -1
     endIndex = -1
 
-    print(len(string))
-    print(string)
-
     if cutFromBeginningList == 0:
         cutFromBeginningList = [0] * len(startStringList)
     

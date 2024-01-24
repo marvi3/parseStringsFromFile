@@ -46,8 +46,6 @@ def modifyRow(row, file, data):
     except FileNotFoundError:
         print("being in excpetion")
         df = pd.DataFrame()
-    
-    print("The df of row", row, "is \n", df)
 
     print("The rows existing before are", len(df))
     if row >= len(df):
