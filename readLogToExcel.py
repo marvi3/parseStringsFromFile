@@ -1,6 +1,6 @@
 # This script needs the following input data:
 #   filename to be read
-#   excel filename to be written
+#   Csv filename to be written
 #   
 
 import sys
@@ -10,7 +10,7 @@ import time
 
 # Checks if less then 3 arguments are existing.
 if len(sys.argv) < 3:
-    print("Usage: python readDataToExcel.py fileNameToBeRead csvToWrite.csv")
+    print("Usage: python readDataToCsv.py fileNameToBeRead csvToWrite.csv")
     sys.exit(0)
 
 startTime = time.time()
@@ -86,7 +86,7 @@ while True:
         entryResult = parseString.getSubstringLengthList(logEntryString, startStringList, stringLengthList, occList, True, cutFromBeginningList)
         print(sys.argv[2])
         print(entryResult)
-        xls.writeExcelFile(sys.argv[2], [""])
+        xls.writeCsvFile(sys.argv[2], [""])
         xls.modifyRow(entryNumber, sys.argv[2], entryResult)
         break
     else:
