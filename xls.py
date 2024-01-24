@@ -47,7 +47,6 @@ def modifyRow(row, file, data):
         print("being in excpetion")
         df = pd.DataFrame()
 
-    print("The rows existing before are", len(df))
     if row >= len(df):
         extraRows = row - len(df) + 1
         df = pd.concat([df, pd.DataFrame([[''] * len(df.columns)] * extraRows)], ignore_index=True)

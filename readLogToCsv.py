@@ -87,6 +87,8 @@ if sys.argv[3] == 0:
             startIndex = endIndex
             entryResult = parseString.getSubstringLengthList(logEntryString, startStringList, stringLengthList, occList, True, cutFromBeginningList)
             xls.modifyRow(entryNumber, sys.argv[2], entryResult)
+            if entryNumber % 10000 == 0:
+                print("So far", entryNumber, "log entries have been processed.")
             entryNumber += 1
         else:
             break
