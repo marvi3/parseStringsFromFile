@@ -13,6 +13,9 @@ def modifyCell(row, col, file, data):
 # A method that modifies one row of an excel sheet
 # The row starts at 0
 def modifyRow(row, file, data):
+    df = pd.read_excel(file)
+    for i in range(len(data)):
+        df.loc[row, i] = data[i].strip()
     try:
         df = pd.read_excel(file)
         for i in range(len(data)):
