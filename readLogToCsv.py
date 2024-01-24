@@ -87,7 +87,7 @@ while True:
         print(sys.argv[2])
         print(entryResult)
         xls.writeCsvFile(sys.argv[2], [""])
-        xls.modifyRow(entryNumber, sys.argv[2], entryResult)
+        # xls.modifyRow(entryNumber, sys.argv[2], entryResult)
         break
     else:
         break
