@@ -10,7 +10,7 @@ import time
 
 # Checks if less then 3 arguments are existing.
 if len(sys.argv) < 3:
-    print("Usage: python readDataToExcel.py fileNameToBeRead ExcelToWrite.xls")
+    print("Usage: python readDataToExcel.py fileNameToBeRead csvToWrite.csv")
     sys.exit(0)
 
 startTime = time.time()
