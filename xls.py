@@ -46,7 +46,8 @@ def modifyRow(row, file, data):
     except FileNotFoundError:
         print("being in excpetion")
         df = pd.DataFrame()
-    
+    print(len(df))
+    print(len(df.columns))
     if row >= len(df):
         extraRows = row - len(df) + 1
         df = pd.concat([df, pd.DataFrame([[''] * len(df.columns)] * extraRows)], ignore_index=True)
