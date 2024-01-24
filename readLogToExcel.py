@@ -84,6 +84,7 @@ while True:
         entryResult.append(logEntryString.splitlines()[0])
         startIndex = endIndex
         entryResult = parseString.getSubstringLengthList(logEntryString, startStringList, stringLengthList, occList, True, cutFromBeginningList)
+        print(sys.argv[2])
         xls.modifyRow(entryNumber, sys.argv[2], entryResult)
         break
     else:
