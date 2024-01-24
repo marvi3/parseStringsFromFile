@@ -63,7 +63,7 @@ cutFromBeginningList.append(103)
 
 # CPU usage from core 0-63:
 startStringList.append("Durchschn.:")
-stringLengthList.append(97)
+stringLengthList.append(96)
 occList.append(64)
 cutFromBeginningList.append(3)
 #   %usr
