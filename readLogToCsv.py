@@ -79,6 +79,7 @@ endIndex = 0
 numOfEntries = int(sys.argv[3])
 if sys.argv[3] == 0:
     while True:
+        print("Running until the whole file has been processed.")
         entryResult = []
         endIndex = fileContent.find("__________", endIndex + 1)
         if endIndex != -1:
@@ -94,6 +95,7 @@ if sys.argv[3] == 0:
             break
 else:
     while True:
+        print("Running until", numOfEntries, "entries have been processed.")
         entryResult = []
         endIndex = fileContent.find("__________", endIndex + 1)
         if endIndex != -1:
