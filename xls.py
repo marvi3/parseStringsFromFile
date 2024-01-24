@@ -19,7 +19,7 @@ def modifyRow(row, file, data):
             df.iloc[i, row] = data[i].strip()
     except:
         print("being in excpetion")
-        df = pd.DataFrame("")
+        df = pd.DataFrame([data])
         for i in range(len(data)):
             df.iloc[i, row] = data[i].strip()
     df.to_excel(file, index=False, header=False)
