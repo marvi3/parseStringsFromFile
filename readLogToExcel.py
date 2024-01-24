@@ -81,7 +81,7 @@ while True:
         entryResult.append(logEntryString.splitlines()[0])
         startIndex = endIndex
         entryResult = parse.getSubstringLengthList(logEntryString, startStringList, stringLengthList, occList, True, cutFromBeginningList)
-        xls.modifyRow(entryNumber, "test.xls", entryResult)
+        xls.modifyRow(entryNumber, argv[2], entryResult)
         break
     else:
         break
