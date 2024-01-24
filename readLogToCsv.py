@@ -9,8 +9,8 @@ import parseString
 import time
 
 # Checks if less then 3 arguments are existing.
-if len(sys.argv) < 3:
-    print("Usage: python readDataToCsv.py fileNameToBeRead csvToWrite.csv")
+if len(sys.argv) < 4:
+    print("Usage: python readDataToCsv.py fileNameToBeRead csvToWrite.csv, numOfLogEntries")
     sys.exit(0)
 
 startTime = time.time()
@@ -76,7 +76,9 @@ logResult = []
 entryNumber = 0
 startIndex = 0
 endIndex = 0
-while True:
+numOfEntries = argv[3]
+if argv[3] == 0:
+    while True:
     entryResult = []
     endIndex = fileContent.find("__________", endIndex + 1)
     if endIndex != -1:
@@ -87,7 +89,21 @@ while True:
         print(sys.argv[2])
         print(entryResult)
         xls.modifyRow(entryNumber, sys.argv[2], entryResult)
-        if entryNumber == 10:
+    else:
+        break
+else:
+    while True:
+    entryResult = []
+    endIndex = fileContent.find("__________", endIndex + 1)
+    if endIndex != -1:
+        logEntryString = fileContent[startIndex:endIndex]
+        entryResult.append(logEntryString.splitlines()[1])
+        startIndex = endIndex
+        entryResult = parseString.getSubstringLengthList(logEntryString, startStringList, stringLengthList, occList, True, cutFromBeginningList)
+        print(sys.argv[2])
+        print(entryResult)
+        xls.modifyRow(entryNumber, sys.argv[2], entryResult)
+        if entryNumber == numOfEntries:
             break
         entryNumber += 1
     else:
