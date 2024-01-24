@@ -15,8 +15,8 @@ def modifyCell(row, col, file, data):
 def modifyRow(row, file, data):
     try:
         df = pd.read_excel(file)
-    for i in range(len(data)):
-        df.iloc[row, i] = data[i].strip()
+        for i in range(len(data)):
+            df.iloc[row, i] = data[i].strip()
     except:
         df = pd.DataFrame(data)
     df.to_excel(file, index=False, columns=False)
