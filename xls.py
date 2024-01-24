@@ -36,6 +36,6 @@ def writeExcelFile(file, data):
     df = pd.DataFrame(data)
     df.to_excel(file)
 
-def writeExcelFile(file, data, rowNames, columnNames):
+def writeExcelFileColRow(file, data, rowNames, columnNames):
     df = pd.DataFrame(data, index=rowNames, columns=columnNames)
     df.to_excel(file)
