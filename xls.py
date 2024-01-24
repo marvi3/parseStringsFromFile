@@ -42,7 +42,7 @@ def add_strings_to_row(row_index, file_name, strings):
 # The row starts at 0
 def modifyRow(row, file, data):
     try:
-        df = pd.read_csv(file, header=0)
+        df = pd.read_csv(file, header=False)
     except FileNotFoundError:
         print("being in excpetion")
         df = pd.DataFrame()
@@ -62,7 +62,7 @@ def modifyRow(row, file, data):
     print("The rows existing after are", len(df))
     print("The columns existing are", len(df.columns))
     df.iloc[row,0:len(data)] = data
-    df.to_csv(file)
+    df.to_csv(file, index=False, header=False)
 
 def oldModifyRow(row, file, data):
     try:
