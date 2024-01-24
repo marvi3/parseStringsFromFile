@@ -103,6 +103,7 @@ else:
             print("The entryNumber and numOfEntries are:", entryNumber, numOfEntries)
         else:
             break
+        print("             sssssssssssssssssss tttttttttttttttttttttttttttttttttttttttttttt")
         if entryNumber == numOfEntries:
             print("              tttttttttttttttttttttttttttttttttttttttttttt")
             break
