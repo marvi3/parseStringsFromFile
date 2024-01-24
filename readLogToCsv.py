@@ -73,7 +73,6 @@ cutFromBeginningList.append(5)
 #   %idle
 
 logResult = []
-roundNumber = 0
 entryNumber = 0
 startIndex = 0
 endIndex = 0
@@ -89,7 +88,8 @@ while True:
         print(sys.argv[2])
         print(entryResult)
         xls.modifyRow(entryNumber, sys.argv[2], entryResult)
-        if roundNumber == 3:
+        if entryNumber == 3:
             break
+        entryNumber += 1
     else:
         break
