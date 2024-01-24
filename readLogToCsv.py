@@ -86,9 +86,8 @@ if sys.argv[3] == 0:
             entryResult.append(logEntryString.splitlines()[1])
             startIndex = endIndex
             entryResult = parseString.getSubstringLengthList(logEntryString, startStringList, stringLengthList, occList, True, cutFromBeginningList)
-            print(sys.argv[2])
-            print(entryResult)
             xls.modifyRow(entryNumber, sys.argv[2], entryResult)
+            entryNumber += 1
         else:
             break
 else:
@@ -100,9 +99,8 @@ else:
             entryResult.append(logEntryString.splitlines()[1])
             startIndex = endIndex
             entryResult = parseString.getSubstringLengthList(logEntryString, startStringList, stringLengthList, occList, True, cutFromBeginningList)
-            print(sys.argv[2])
-            print(entryResult)
             xls.modifyRow(entryNumber, sys.argv[2], entryResult)
+            print("The entryNumber is:", entryNumber)
             if entryNumber == numOfEntries:
                 break
             entryNumber += 1
