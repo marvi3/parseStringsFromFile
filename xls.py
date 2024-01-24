@@ -31,9 +31,7 @@ def modifyRow(row, file, data):
         extra_cols = len(data) - len(df.columns)
         for i in range(extra_cols):
             df[f'Column_{len(df.columns) + 1}'] = pd.NA
-    print(len(df.iloc[row]))
-    print(len(df.iloc[row:len(data) - 1]))
-    print(len(data))
+    print(row)
     df.iloc[row,0:len(data)] = data
     df.to_csv(file, index=False, header=False)
 
