@@ -87,7 +87,7 @@ while True:
         print(sys.argv[2])
         print(entryResult)
         xls.modifyRow(entryNumber, sys.argv[2], entryResult)
-        if entryNumber == 0:
+        if entryNumber == 1:
             break
         entryNumber += 1
     else:
