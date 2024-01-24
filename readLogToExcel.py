@@ -73,7 +73,7 @@ cutFromBeginningList.append(5)
 #   %idle
 
 logResult = []
-entrNumber = 0
+entryNumber = 0
 startIndex = 0
 endIndex = 0
 while True:
