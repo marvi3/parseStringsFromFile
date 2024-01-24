@@ -32,7 +32,7 @@ def modifyRow(row, file, data):
         for i in range(extra_cols):
             df[f'Column_{len(df.columns) + 1}'] = pd.NA
     
-    df.loc[row, :len(strings) - 1] = data
+    df.loc[row, :len(data) - 1] = data
     df.to_csv(file, index=False, header=False)
 
 def oldModifyRow(row, file, data):
