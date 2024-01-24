@@ -34,7 +34,7 @@ def modifyRow(row, file, data):
     print(len(df.iloc[row]))
     print(len(df.iloc[row:len(data) - 1]))
     print(len(data))
-    df.iloc[row:len(data) - 1] = data
+    df.iloc[row,0:len(data)] = data
     df.to_csv(file, index=False, header=False)
 
 def oldModifyRow(row, file, data):
