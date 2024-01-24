@@ -13,7 +13,10 @@ def modifyCell(row, col, file, data):
 # A method that modifies one row of an excel sheet
 # The row starts at 0
 def modifyRow(row, file, data):
-  df = pd.read_excel(file)
+  try:
+    df = pd.read_excel(file)
+  except:
+   df = pd.DataFrame(data)
   for i in range(len(data)):
     df.iloc[row, i] = data[i].strip()
   df.to_excel(file, index=False, columns=False)
