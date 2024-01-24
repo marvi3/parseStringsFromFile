@@ -57,7 +57,7 @@ cutFromBeginningList.append(3)
 
 # CPU usage from average CPU usage:
 startStringList.append("Durchschn.:")
-stringLengthList.append(195)
+stringLengthList.append(194)
 occList.append(1)
 cutFromBeginningList.append(103)
 
