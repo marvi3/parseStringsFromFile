@@ -21,7 +21,7 @@ def modifyRow(row, file, data):
     try:
         df = pd.read_csv(file)
         for i in range(len(data)):
-            df.loc[row, i] = data[i].strip()
+            df.loc[i, row] = data[i].strip()
     except:
         print("being in excpetion")
         df = pd.DataFrame([""])
