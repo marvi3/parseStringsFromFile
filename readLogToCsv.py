@@ -100,6 +100,7 @@ if int(sys.argv[3]) == 0:
             partStartTime = time.time()
             xls.modifyRow(entryNumber, sys.argv[2], entryResult)
             writeTime = time.time() - partStartTime
+            entryNumber += 1
             if entryNumber % reportEveryRounds == 0:
                 endTime = time.time()
                 print("So far", entryNumber, "log entries have been processed which took", endTime-startTime, "seconds.")
@@ -109,7 +110,6 @@ if int(sys.argv[3]) == 0:
                 splitTime = 0
                 writeTime = 0
                 roundTime = time.time()
-            entryNumber += 1
         else:
             break
 else:
