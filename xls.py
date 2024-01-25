@@ -53,17 +53,19 @@ def modifyRow(row, file, data):
     if row >= len(df):
         extraRows = row - len(df) + 1
         df = pd.concat([df, pd.DataFrame([[''] * len(df.columns)] * extraRows)], ignore_index=True)
+    lapTime2 = time.time()
     
     if len(data) > len(df.columns):
         extraCols = len(data) - len(df.columns)
         for i in range(extraCols):
             df[f'Column_{len(df.columns) + 1}'] = pd.NA
+    lapTime3 = time.time()
     df.iloc[row,0:len(data)] = data
 
-    lapTime2 = time.time()
+    lapTime4 = time.time()
     df.to_csv(file, index=False, header=False)
     endTime = time.time()
-    return [lapTime1 - startTime, lapTime2 - lapTime1, endTime - lapTime2]
+    return [lapTime1 - startTime, lapTime2 - lapTime1, lapTime3 - lapTime2, lapTime4 - lapTime3, endTime - lapTime4]
 
 def oldModifyRow(row, file, data):
     try:

@@ -82,7 +82,7 @@ startTime = time.time()
 roundTime = startTime
 prepareTime = 0
 splitTime = 0
-writeTime = [0, 0, 0]
+writeTime = [0, 0, 0, 0, 0]
 reportEveryRounds = 100
 if int(sys.argv[3]) == 0:
     print("Running until the whole file has been processed.")
@@ -107,7 +107,7 @@ if int(sys.argv[3]) == 0:
                 print("preparing took", prepareTime, "seconds, splitting the string took", splitTime, "seconds and writing the results took", writeTime, "seconds.")
                 prepareTime = 0
                 splitTime = 0
-                writeTime = [0, 0, 0]
+                writeTime = [0, 0, 0, 0, 0]
                 roundTime = time.time()
         else:
             break
