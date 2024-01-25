@@ -129,9 +129,10 @@ else:
         if endIndex != -1:
             logEntryString = fileContent[startIndex:endIndex]
             entryResult.append(logEntryString.splitlines()[1])
+            print(logEntryString.splitlines()[0:10])
             startIndex = endIndex
             entryResult = parseString.getSubstringLengthList(logEntryString, startStringList, stringLengthList, occList, True, cutFromBeginningList)
-            xls.modifyRow(entryNumber, df, entryResult, numOfEntries)
+            xls.modifyRow(entryNumber, df, entryResult, numOfEntries - 1)
             if entryNumber == numOfEntries:
                 xls.writeCsv(fileName, df)
                 break
