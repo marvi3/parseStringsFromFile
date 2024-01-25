@@ -85,7 +85,7 @@ roundTime = startTime
 prepareTime = 0
 splitTime = 0
 writeTime = 0
-reportEveryRounds = 10
+reportEveryRounds = 30000
 fileContent = "\n\n\n" + fileContent
 if int(sys.argv[3]) == 0:
     print("Running until the whole file has been processed.")
