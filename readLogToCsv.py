@@ -7,6 +7,7 @@ import sys
 import xls
 import parseString
 import time
+from operator import add
 
 # Checks if less then 3 arguments are existing.
 if len(sys.argv) < 4:
@@ -81,7 +82,7 @@ startTime = time.time()
 roundTime = startTime
 prepareTime = 0
 splitTime = 0
-writeTime = 0
+writeTime = [0, 0, 0]
 reportEveryRounds = 100
 if int(sys.argv[3]) == 0:
     print("Running until the whole file has been processed.")
@@ -97,7 +98,7 @@ if int(sys.argv[3]) == 0:
             startIndex = endIndex
             entryResult = parseString.getSubstringLengthList(logEntryString, startStringList, stringLengthList, occList, True, cutFromBeginningList)
             splitTime += time.time() - partStartTime
-            writeTime += xls.modifyRow(entryNumber, sys.argv[2], entryResult)
+            writeTime = list(map(add, writeTime, xls.modifyRow(entryNumber, sys.argv[2], entryResult)))
             entryNumber += 1
             if entryNumber % reportEveryRounds == 0:
                 endTime = time.time()

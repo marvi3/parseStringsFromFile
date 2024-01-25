@@ -47,8 +47,9 @@ def modifyRow(row, file, data):
         df = pd.read_csv(file, header=None)
     except FileNotFoundError:
         print("being in excpetion")
-        df = pd.DataFrame()
-    endTime = time.time()
+        df = pd.DataFr
+
+    lapTime1 = time.time()
     if row >= len(df):
         extraRows = row - len(df) + 1
         df = pd.concat([df, pd.DataFrame([[''] * len(df.columns)] * extraRows)], ignore_index=True)
@@ -58,8 +59,11 @@ def modifyRow(row, file, data):
         for i in range(extraCols):
             df[f'Column_{len(df.columns) + 1}'] = pd.NA
     df.iloc[row,0:len(data)] = data
+
+    lapTime2 = time.time()
     df.to_csv(file, index=False, header=False)
-    return endTime - startTime
+    endTime = time.time()
+    return [lapTime1 - startTime, lapTime2 - lapTime1, endTime - lapTime2]
 
 def oldModifyRow(row, file, data):
     try:
