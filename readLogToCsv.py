@@ -99,6 +99,7 @@ if int(sys.argv[3]) == 0:
             prepareTime += time.time() - partStartTime
             partStartTime = time.time()
             entryResult.append(logEntryString.splitlines()[1])
+            print(logEntryString.splitlines()[0:10])
             startIndex = endIndex
             entryResult = parseString.getSubstringLengthList(logEntryString, startStringList, stringLengthList, occList, True, cutFromBeginningList)
             splitTime += time.time() - partStartTime
