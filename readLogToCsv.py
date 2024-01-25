@@ -86,6 +86,7 @@ prepareTime = 0
 splitTime = 0
 writeTime = 0
 reportEveryRounds = 10
+fileContent = "\n\n\n" + fileContent
 if int(sys.argv[3]) == 0:
     print("Running until the whole file has been processed.")
     partStartTime = time.time()
@@ -98,10 +99,10 @@ if int(sys.argv[3]) == 0:
             logEntryString = fileContent[startIndex:endIndex]
             prepareTime += time.time() - partStartTime
             partStartTime = time.time()
-            entryResult.append(logEntryString.splitlines()[1])
+            entryResult.append(logEntryString.splitlines()[3])
             print(logEntryString.splitlines()[0:10])
             startIndex = endIndex
-            entryResult = parseString.getSubstringLengthList(logEntryString, startStringList, stringLengthList, occList, True, cutFromBeginningList)
+            entryResult = entryResult + parseString.getSubstringLengthList(logEntryString, startStringList, stringLengthList, occList, True, cutFromBeginningList)
             splitTime += time.time() - partStartTime
             partStartTime = time.time()
             df = xls.modifyRow(entryNumber, df, entryResult, entryNumber + reportEveryRounds - entryNumber % reportEveryRounds - 1)
@@ -128,10 +129,10 @@ else:
         endIndex = fileContent.find("__________", endIndex + 1)
         if endIndex != -1:
             logEntryString = fileContent[startIndex:endIndex]
-            entryResult.append(logEntryString.splitlines()[1])
+            entryResult.append(logEntryString.splitlines()[3])
             print(logEntryString.splitlines()[0:10])
             startIndex = endIndex
-            entryResult = parseString.getSubstringLengthList(logEntryString, startStringList, stringLengthList, occList, True, cutFromBeginningList)
+            entryResult = entryResult + parseString.getSubstringLengthList(logEntryString, startStringList, stringLengthList, occList, True, cutFromBeginningList)
             xls.modifyRow(entryNumber, df, entryResult, numOfEntries - 1)
             if entryNumber == numOfEntries:
                 xls.writeCsv(fileName, df)
