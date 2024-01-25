@@ -78,14 +78,14 @@ entryNumber = 0
 startIndex = 0
 endIndex = 0
 fileName = sys.argv[2]
-df = xls.readCsv(fileName)
+df = xls.createCsv()
 numOfEntries = int(sys.argv[3])
 startTime = time.time()
 roundTime = startTime
 prepareTime = 0
 splitTime = 0
 writeTime = 0
-reportEveryRounds = 30000
+reportEveryRounds = 10000
 fileContent = "\n\n\n" + fileContent
 if int(sys.argv[3]) == 0:
     print("Running until the whole file has been processed.")

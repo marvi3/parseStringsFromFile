@@ -24,6 +24,11 @@ def readCsv(file):
         df = pd.DataFrame()
     return df
 
+def createCsv():
+    df = pd.DataFrame()
+    return df
+
+
 def writeCsv(file, df):
     df.to_csv(file, index=False, header=False)
 
