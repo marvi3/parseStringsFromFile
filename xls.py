@@ -16,33 +16,30 @@ def modifyCell(row, col, file, data):
         df.loc[row, col] = data.strip()
     df.to_csv(file, index=False, header=False)
 
-# A method that modifies one row of an Csv sheet
-# The row starts at 0
-def modifyRow(row, file, data):
-    startTime = time.time()
+def readCsv(file):
     try:
         df = pd.read_csv(file, header=None)
     except FileNotFoundError:
         print("being in excpetion")
         df = pd.DataFrame()
+    return df
 
-    lapTime1 = time.time()
+def writeCsv(file, df):
+    df.to_csv(file, index=False, header=False)
+
+# A method that modifies one row of an Csv sheet
+# The row starts at 0
+def modifyRow(row, df, data):
     if row >= len(df):
         extraRows = row - len(df) + 1
         df = pd.concat([df, pd.DataFrame([[''] * len(df.columns)] * extraRows)], ignore_index=True)
-    lapTime2 = time.time()
     
     if len(data) > len(df.columns):
         extraCols = len(data) - len(df.columns)
         for i in range(extraCols):
             df[f'Column_{len(df.columns) + 1}'] = pd.NA
-    lapTime3 = time.time()
     df.iloc[row,0:len(data)] = data
-
-    lapTime4 = time.time()
-    df.to_csv(file, index=False, header=False)
-    endTime = time.time()
-    return [lapTime1 - startTime, lapTime2 - lapTime1, lapTime3 - lapTime2, lapTime4 - lapTime3, endTime - lapTime4]
+    return df
 
 def oldModifyRow(row, file, data):
     try:

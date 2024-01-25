@@ -77,15 +77,19 @@ logResult = []
 entryNumber = 0
 startIndex = 0
 endIndex = 0
+fileName = sys.argv[2]
 numOfEntries = int(sys.argv[3])
 startTime = time.time()
 roundTime = startTime
 prepareTime = 0
 splitTime = 0
-writeTime = [0, 0, 0, 0, 0]
-reportEveryRounds = 100
+writeTime = 0
+reportEveryRounds = 1000
 if int(sys.argv[3]) == 0:
     print("Running until the whole file has been processed.")
+    partStartTime = time.time()
+    df = xls.readCsv(fileName)
+    writeTime += time.time() - partStartTime
     while True:
         partStartTime = time.time()
         entryResult = []
@@ -98,16 +102,21 @@ if int(sys.argv[3]) == 0:
             startIndex = endIndex
             entryResult = parseString.getSubstringLengthList(logEntryString, startStringList, stringLengthList, occList, True, cutFromBeginningList)
             splitTime += time.time() - partStartTime
-            writeTime = list(map(add, writeTime, xls.modifyRow(entryNumber, sys.argv[2], entryResult)))
+            partStartTime = time.time()
+            df = xls.modifyRow(entryNumber, fileName, entryResult)
+            writeTime += time.time() - partStartTime
             entryNumber += 1
             if entryNumber % reportEveryRounds == 0:
+                partStartTime = time.time()
+                xls.writeCsv(fileName, df)
+                writeTime += time.time() - partStartTime
                 endTime = time.time()
                 print("So far", entryNumber, "log entries have been processed which took", endTime-startTime, "seconds.")
                 print("Processing the last", reportEveryRounds, "logEntries took", endTime - roundTime, "seconds")
                 print("writing the results took", writeTime, "seconds.")
                 prepareTime = 0
                 splitTime = 0
-                writeTime = [0, 0, 0, 0, 0]
+                writeTime = 0
                 roundTime = time.time()
         else:
             break
@@ -121,7 +130,7 @@ else:
             entryResult.append(logEntryString.splitlines()[1])
             startIndex = endIndex
             entryResult = parseString.getSubstringLengthList(logEntryString, startStringList, stringLengthList, occList, True, cutFromBeginningList)
-            xls.modifyRow(entryNumber, sys.argv[2], entryResult)
+            xls.modifyRow(entryNumber, fileName, entryResult)
             if entryNumber == numOfEntries:
                 break
             entryNumber += 1
