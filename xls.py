@@ -29,10 +29,13 @@ def writeCsv(file, df):
 
 # A method that modifies one row of an Csv sheet
 # The row starts at 0
-def modifyRow(row, df, data):
-    if row >= len(df):
-        extraRows = row - len(df) + 1
+def modifyRow(row, df, data, appendRows):
+    if max([row, appendRows]) >= len(df):
+        startTime = time.time()
+        lenbefore = len(df)
+        extraRows = max([row, appendRows]) - len(df) + 1
         df = pd.concat([df, pd.DataFrame([[''] * len(df.columns)] * extraRows)], ignore_index=True)
+        print("Expanding the rows from", lenbefore, "to", len(df), "took", time.time() - startTime, "seconds.")
     
     if len(data) > len(df.columns):
         extraCols = len(data) - len(df.columns)
