@@ -2,6 +2,7 @@
 
 import pandas as pd
 import openpyxl
+import time
 
 # A method that modifies only one cell
 # The row and col start at 0
@@ -41,12 +42,13 @@ def add_strings_to_row(row_index, file_name, strings):
 # A method that modifies one row of an Csv sheet
 # The row starts at 0
 def modifyRow(row, file, data):
+    startTime = time.time()
     try:
         df = pd.read_csv(file, header=None)
     except FileNotFoundError:
         print("being in excpetion")
         df = pd.DataFrame()
-
+    endTime = time.time()
     if row >= len(df):
         extraRows = row - len(df) + 1
         df = pd.concat([df, pd.DataFrame([[''] * len(df.columns)] * extraRows)], ignore_index=True)
@@ -57,6 +59,7 @@ def modifyRow(row, file, data):
             df[f'Column_{len(df.columns) + 1}'] = pd.NA
     df.iloc[row,0:len(data)] = data
     df.to_csv(file, index=False, header=False)
+    return endTime - startTime
 
 def oldModifyRow(row, file, data):
     try:

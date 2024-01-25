@@ -97,9 +97,7 @@ if int(sys.argv[3]) == 0:
             startIndex = endIndex
             entryResult = parseString.getSubstringLengthList(logEntryString, startStringList, stringLengthList, occList, True, cutFromBeginningList)
             splitTime += time.time() - partStartTime
-            partStartTime = time.time()
-            xls.modifyRow(entryNumber, sys.argv[2], entryResult)
-            writeTime += time.time() - partStartTime
+            writeTime += xls.modifyRow(entryNumber, sys.argv[2], entryResult)
             entryNumber += 1
             if entryNumber % reportEveryRounds == 0:
                 endTime = time.time()
