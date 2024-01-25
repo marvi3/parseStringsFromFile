@@ -16,29 +16,6 @@ def modifyCell(row, col, file, data):
         df.loc[row, col] = data.strip()
     df.to_csv(file, index=False, header=False)
 
-def add_strings_to_row(row_index, file_name, strings):
-    # Try to read the existing CSV file into a DataFrame, if it exists
-    try:
-        df = pd.read_csv(file_name)
-    except FileNotFoundError:
-        df = pd.DataFrame()
-
-    # Expand the DataFrame if there are not enough rows
-    if row_index >= len(df):
-        # Append empty rows
-        extra_rows = row_index - len(df) + 1
-        df = pd.concat([df, pd.DataFrame([[''] * len(df.columns)] * extra_rows)], ignore_index=True)
-
-    # Expand the DataFrame if there are not enough columns
-    if len(strings) > len(df.columns):
-        # Add extra columns
-        extra_cols = len(strings) - len(df.columns)
-        for i in range(extra_cols):
-            df[f'Column_{len(df.columns) + 1}'] = pd.NA
-
-    # Add the array of strings into the specified row
-    df.loc[row_index, :len(strings) - 1] = strings
-
 # A method that modifies one row of an Csv sheet
 # The row starts at 0
 def modifyRow(row, file, data):
