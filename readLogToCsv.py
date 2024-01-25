@@ -99,7 +99,7 @@ if int(sys.argv[3]) == 0:
             splitTime += time.time() - partStartTime
             partStartTime = time.time()
             xls.modifyRow(entryNumber, sys.argv[2], entryResult)
-            writeTime = time.time() - partStartTime
+            writeTime += time.time() - partStartTime
             entryNumber += 1
             if entryNumber % reportEveryRounds == 0:
                 endTime = time.time()
