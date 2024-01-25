@@ -47,7 +47,7 @@ def modifyRow(row, file, data):
         df = pd.read_csv(file, header=None)
     except FileNotFoundError:
         print("being in excpetion")
-        df = pd.DataFr
+        df = pd.DataFrame()
 
     lapTime1 = time.time()
     if row >= len(df):
