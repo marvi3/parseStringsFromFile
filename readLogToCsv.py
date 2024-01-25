@@ -103,7 +103,7 @@ if int(sys.argv[3]) == 0:
             entryResult = parseString.getSubstringLengthList(logEntryString, startStringList, stringLengthList, occList, True, cutFromBeginningList)
             splitTime += time.time() - partStartTime
             partStartTime = time.time()
-            df = xls.modifyRow(entryNumber, fileName, entryResult)
+            df = xls.modifyRow(entryNumber, df, entryResult)
             writeTime += time.time() - partStartTime
             entryNumber += 1
             if entryNumber % reportEveryRounds == 0:
