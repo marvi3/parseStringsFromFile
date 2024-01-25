@@ -133,7 +133,7 @@ else:
             print(logEntryString.splitlines()[0:10])
             startIndex = endIndex
             entryResult = entryResult + parseString.getSubstringLengthList(logEntryString, startStringList, stringLengthList, occList, True, cutFromBeginningList)
-            xls.modifyRow(entryNumber, df, entryResult, numOfEntries - 1)
+            df = xls.modifyRow(entryNumber, df, entryResult, numOfEntries - 1)
             if entryNumber == numOfEntries:
                 xls.writeCsv(fileName, df)
                 break
