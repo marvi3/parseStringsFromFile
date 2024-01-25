@@ -85,10 +85,9 @@ roundTime = startTime
 prepareTime = 0
 splitTime = 0
 writeTime = 0
-reportEveryRounds = 10000
 fileContent = "\n\n\n" + fileContent
 if int(sys.argv[3]) == 0:
-    print("Running until the whole file has been processed.")
+    print("Processing the whole log-file.")
     partStartTime = time.time()
     writeTime += time.time() - partStartTime
     while True:
@@ -97,28 +96,20 @@ if int(sys.argv[3]) == 0:
         endIndex = fileContent.find("__________", endIndex + 1)
         if endIndex != -1:
             logEntryString = fileContent[startIndex:endIndex]
-            prepareTime += time.time() - partStartTime
-            partStartTime = time.time()
             entryResult.append(logEntryString.splitlines()[3])
             startIndex = endIndex
             entryResult = entryResult + parseString.getSubstringLengthList(logEntryString, startStringList, stringLengthList, occList, True, cutFromBeginningList)
-            splitTime += time.time() - partStartTime
-            partStartTime = time.time()
             df = xls.modifyRow(entryNumber, df, entryResult, entryNumber + reportEveryRounds - entryNumber % reportEveryRounds - 1)
-            writeTime += time.time() - partStartTime
             entryNumber += 1
             if entryNumber % reportEveryRounds == 0:
-                partStartTime = time.time()
                 xls.writeCsv(fileName, df)
-                writeTime += time.time() - partStartTime
                 endTime = time.time()
                 print("Processing the last", reportEveryRounds, "out of", entryNumber, " total logEntries took", round(endTime - roundTime, 2), "seconds. This a total time till now of", round(endTime-startTime, 2), "seconds.")
                 #print("writing the results took", round(writeTime, 2), "seconds.")
-                prepareTime = 0
-                splitTime = 0
-                writeTime = 0
                 roundTime = time.time()
         else:
+            print("Processing all", entryNumber, "logEntries took", round(endTime-startTime, 2), "seconds.")
+            print("The process is finished.")
             xls.writeCsv(fileName, df)
             break
 else:
