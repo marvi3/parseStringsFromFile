@@ -74,6 +74,7 @@ cutFromBeginningList.append(5)
 #   %idle
 
 logResult = []
+df = xls.readCsv(fileName)
 entryNumber = 0
 startIndex = 0
 endIndex = 0
@@ -88,7 +89,6 @@ reportEveryRounds = 10
 if int(sys.argv[3]) == 0:
     print("Running until the whole file has been processed.")
     partStartTime = time.time()
-    df = xls.readCsv(fileName)
     writeTime += time.time() - partStartTime
     while True:
         partStartTime = time.time()
