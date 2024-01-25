@@ -84,7 +84,7 @@ roundTime = startTime
 prepareTime = 0
 splitTime = 0
 writeTime = 0
-reportEveryRounds = 10000
+reportEveryRounds = 100000
 if int(sys.argv[3]) == 0:
     print("Running until the whole file has been processed.")
     partStartTime = time.time()
