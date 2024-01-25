@@ -100,7 +100,6 @@ if int(sys.argv[3]) == 0:
             prepareTime += time.time() - partStartTime
             partStartTime = time.time()
             entryResult.append(logEntryString.splitlines()[3])
-            print(logEntryString.splitlines()[0:10])
             startIndex = endIndex
             entryResult = entryResult + parseString.getSubstringLengthList(logEntryString, startStringList, stringLengthList, occList, True, cutFromBeginningList)
             splitTime += time.time() - partStartTime
@@ -130,11 +129,10 @@ else:
         if endIndex != -1:
             logEntryString = fileContent[startIndex:endIndex]
             entryResult.append(logEntryString.splitlines()[3])
-            print(logEntryString.splitlines()[0:10])
             startIndex = endIndex
             entryResult = entryResult + parseString.getSubstringLengthList(logEntryString, startStringList, stringLengthList, occList, True, cutFromBeginningList)
             df = xls.modifyRow(entryNumber, df, entryResult, numOfEntries - 1)
-            if entryNumber == numOfEntries:
+            if entryNumber == numOfEntries - 1:
                 xls.writeCsv(fileName, df)
                 break
             entryNumber += 1
