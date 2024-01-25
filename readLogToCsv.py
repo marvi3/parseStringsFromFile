@@ -104,7 +104,7 @@ if int(sys.argv[3]) == 0:
                 endTime = time.time()
                 print("So far", entryNumber, "log entries have been processed which took", endTime-startTime, "seconds.")
                 print("Processing the last", reportEveryRounds, "logEntries took", endTime - roundTime, "seconds")
-                print("preparing took", prepareTime, "seconds, splitting the string took", splitTime, "seconds and writing the results took", writeTime, "seconds.")
+                print("writing the results took", writeTime, "seconds.")
                 prepareTime = 0
                 splitTime = 0
                 writeTime = [0, 0, 0, 0, 0]
