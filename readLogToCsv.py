@@ -74,11 +74,11 @@ cutFromBeginningList.append(5)
 #   %idle
 
 logResult = []
-df = xls.readCsv(fileName)
 entryNumber = 0
 startIndex = 0
 endIndex = 0
 fileName = sys.argv[2]
+df = xls.readCsv(fileName)
 numOfEntries = int(sys.argv[3])
 startTime = time.time()
 roundTime = startTime
