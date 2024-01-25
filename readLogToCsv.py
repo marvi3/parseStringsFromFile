@@ -84,7 +84,7 @@ roundTime = startTime
 prepareTime = 0
 splitTime = 0
 writeTime = 0
-reportEveryRounds = 100
+reportEveryRounds = 1000
 if int(sys.argv[3]) == 0:
     print("Running until the whole file has been processed.")
     partStartTime = time.time()
@@ -103,7 +103,7 @@ if int(sys.argv[3]) == 0:
             entryResult = parseString.getSubstringLengthList(logEntryString, startStringList, stringLengthList, occList, True, cutFromBeginningList)
             splitTime += time.time() - partStartTime
             partStartTime = time.time()
-            df = xls.modifyRow(entryNumber, df, entryResult, entryNumber + reportEveryRounds - entryNumber % reportEveryRounds)
+            df = xls.modifyRow(entryNumber, df, entryResult, entryNumber + reportEveryRounds - entryNumber % reportEveryRounds - 1)
             writeTime += time.time() - partStartTime
             entryNumber += 1
             if entryNumber % reportEveryRounds == 0:
