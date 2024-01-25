@@ -75,7 +75,7 @@ cutFromBeginningList.append(5)
 
 reportEveryRounds = 10000
 if len(sys.argv) > 4:
-    reportEveryRounds = str(sys.argv[4])
+    reportEveryRounds = int(sys.argv[4])
 logResult = []
 entryNumber = 0
 startIndex = 0
