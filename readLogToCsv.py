@@ -111,8 +111,8 @@ if int(sys.argv[3]) == 0:
                 #print("writing the results took", round(writeTime, 2), "seconds.")
                 roundTime = time.time()
         else:
-            endTime = time.time()
             xls.writeCsv(fileName, df)
+            endTime = time.time()
             print("Processing all", entryNumber, "logEntries took", round(endTime-startTime, 2), "seconds.")
             print("The process is finished.")
             break
