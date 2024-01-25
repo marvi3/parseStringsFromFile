@@ -107,7 +107,7 @@ if int(sys.argv[3]) == 0:
             if entryNumber % reportEveryRounds == 0:
                 xls.writeCsv(fileName, df)
                 endTime = time.time()
-                print("Processing the last", reportEveryRounds, "out of", entryNumber, "total logEntries took", round(endTime - roundTime, 2), "seconds. This a total time till now of", round(endTime-startTime, 2), "seconds.")
+                print("Processing the last", reportEveryRounds, "out of", entryNumber, "total logEntries took", round(endTime - roundTime, 2), "seconds which is a total of", round(endTime-startTime, 2), "seconds until now.")
                 #print("writing the results took", round(writeTime, 2), "seconds.")
                 roundTime = time.time()
         else:
