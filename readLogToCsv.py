@@ -131,8 +131,9 @@ else:
             entryResult.append(logEntryString.splitlines()[1])
             startIndex = endIndex
             entryResult = parseString.getSubstringLengthList(logEntryString, startStringList, stringLengthList, occList, True, cutFromBeginningList)
-            xls.modifyRow(entryNumber, fileName, entryResult)
+            xls.modifyRow(entryNumber, df, entryResult, numOfEntries)
             if entryNumber == numOfEntries:
+                xls.writeCsv(fileName, df)
                 break
             entryNumber += 1
         else:
