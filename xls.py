@@ -35,9 +35,10 @@ def modifyRow(row, df, data, appendRows):
         lenbefore = len(df)
         extraRows = max([row, appendRows]) - len(df) + 1
         df = pd.concat([df, pd.DataFrame([[''] * len(df.columns)] * extraRows)], ignore_index=True)
-        print("Expanding the rows from", lenbefore, "to", len(df), "took", round(time.time() - startTime, 2), "seconds.")
+        #print("Expanding the rows from", lenbefore, "to", len(df), "took", round(time.time() - startTime, 2), "seconds.")
     
     if len(data) > len(df.columns):
+        print("We are now expanding the columns from", len(df.columns), "to", len(data))
         extraCols = len(data) - len(df.columns)
         for i in range(extraCols):
             df[f'Column_{len(df.columns) + 1}'] = pd.NA

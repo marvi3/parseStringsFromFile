@@ -112,14 +112,14 @@ if int(sys.argv[3]) == 0:
                 xls.writeCsv(fileName, df)
                 writeTime += time.time() - partStartTime
                 endTime = time.time()
-                print("So far", entryNumber, "log entries have been processed which took", round(endTime-startTime, 2), "seconds.")
-                print("Processing the last", reportEveryRounds, "logEntries took", round(endTime - roundTime, 2), "seconds")
+                print("Processing the last", reportEveryRounds, "out of", entryNumber, " total logEntries took", round(endTime - roundTime, 2), "seconds. This a total time till now of", round(endTime-startTime, 2), "seconds.")
                 #print("writing the results took", round(writeTime, 2), "seconds.")
                 prepareTime = 0
                 splitTime = 0
                 writeTime = 0
                 roundTime = time.time()
         else:
+            xls.writeCsv(fileName, df)
             break
 else:
     print("Running until", numOfEntries, "entries have been processed.")
