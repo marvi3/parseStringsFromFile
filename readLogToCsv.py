@@ -77,6 +77,9 @@ entryNumber = 0
 startIndex = 0
 endIndex = 0
 numOfEntries = int(sys.argv[3])
+startTime = time.time()
+roundTime = startTime
+reportEveryRounds = 100
 if int(sys.argv[3]) == 0:
     print("Running until the whole file has been processed.")
     while True:
@@ -88,8 +91,11 @@ if int(sys.argv[3]) == 0:
             startIndex = endIndex
             entryResult = parseString.getSubstringLengthList(logEntryString, startStringList, stringLengthList, occList, True, cutFromBeginningList)
             xls.modifyRow(entryNumber, sys.argv[2], entryResult)
-            if entryNumber % 10000 == 0:
-                print("So far", entryNumber, "log entries have been processed.")
+            if entryNumber % reportEveryRounds == 0:
+                endTime = time.time()
+                print("So far", entryNumber, "log entries have been processed which took", endTime-startTime, "seconds.")
+                print("Processing the last", reportEveryRounds, "logEntries took", endTime - roundTime, "seconds")
+                roundTime = time.time()
             entryNumber += 1
         else:
             break
