@@ -21,7 +21,7 @@ def readCsv(file):
     try:
         df = pd.read_csv(file, header=None)
     except FileNotFoundError:
-        print("being in excpetion")
+        print("Could not find the file")
         df = pd.DataFrame()
     return df
 
