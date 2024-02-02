@@ -81,7 +81,7 @@ entryNumber = 0
 startIndex = 0
 endIndex = 0
 fileName = sys.argv[2]
-df = xls.createCsv()
+df = xls.createCsvFile(fileName)
 numOfEntries = int(sys.argv[3])
 startTime = time.time()
 roundTime = startTime
@@ -89,6 +89,17 @@ prepareTime = 0
 splitTime = 0
 writeTime = 0
 fileContent = "\n\n\n" + fileContent
+entryResult = []
+endIndex = fileContent.find("__________", endIndex + 1)
+if endIndex != -1:
+    logEntryString = fileContent[startIndex:endIndex]
+    entryResult.append(logEntryString.splitlines()[3])
+    startIndex = endIndex
+    entryResult = entryResult + parseString.getSubstringLengthList(logEntryString, startStringList, stringLengthList, occList, True, cutFromBeginningList)
+    df = xls.modifyRow(entryNumber % reportEveryRounds, df, range(len(entryResult)), reportEveryRounds)
+    entryNumber += 1
+    df = xls.modifyRow(entryNumber % reportEveryRounds, df, entryResult, reportEveryRounds)
+    entryNumber += 1
 if int(sys.argv[3]) == 0:
     print("Processing the whole log-file.")
     partStartTime = time.time()
@@ -102,16 +113,27 @@ if int(sys.argv[3]) == 0:
             entryResult.append(logEntryString.splitlines()[3])
             startIndex = endIndex
             entryResult = entryResult + parseString.getSubstringLengthList(logEntryString, startStringList, stringLengthList, occList, True, cutFromBeginningList)
-            df = xls.modifyRow(entryNumber, df, entryResult, entryNumber + reportEveryRounds - entryNumber % reportEveryRounds - 1)
+            df = xls.modifyRow(entryNumber % reportEveryRounds, df, entryResult, reportEveryRounds)
             entryNumber += 1
             if entryNumber % reportEveryRounds == 0:
-                xls.writeCsv(fileName, df)
+                try:
+                    df.iloc[:, 13:] = df.iloc[:, 13:].astype(str).map(lambda x: x.replace(',', '.'))
+                    df.iloc[:, 13:] = df.iloc[:, 13:].astype(float)
+                except:
+                    print("line", entryNumber, "was not converting to float")
+                xls.appendCsv(fileName, df)
                 endTime = time.time()
                 print("Processing the last", reportEveryRounds, "out of", entryNumber, "total logEntries took", round(endTime - roundTime, 2), "seconds which is a total of", round(endTime-startTime, 2), "seconds until now.")
                 #print("writing the results took", round(writeTime, 2), "seconds.")
+                df = xls.createCsvFrame(fileName)
                 roundTime = time.time()
         else:
-            xls.writeCsv(fileName, df)
+            df.replace(r'^s*$', float('NaN'), regex = True)
+            df.dropna(inplace = True)
+            df.replace(float('NaN'), '', regex = True)
+            df.iloc[:, 13:] = df.iloc[:, 13:].astype(str).map(lambda x: x.replace(',', '.'))
+            df.iloc[:, 13:] = df.iloc[:, 13:].astype(float, errors='ignore')
+            xls.appendCsv(fileName, df.iloc[:, 0:len(df) - 1])
             endTime = time.time()
             print("Processing all", entryNumber, "logEntries took", round(endTime-startTime, 2), "seconds.")
             print("The process is finished.")
@@ -128,7 +150,7 @@ else:
             entryResult = entryResult + parseString.getSubstringLengthList(logEntryString, startStringList, stringLengthList, occList, True, cutFromBeginningList)
             df = xls.modifyRow(entryNumber, df, entryResult, numOfEntries - 1)
             if entryNumber == numOfEntries - 1:
-                xls.writeCsv(fileName, df)
+                xls.appendCsv(fileName, df)
                 break
             entryNumber += 1
         else:

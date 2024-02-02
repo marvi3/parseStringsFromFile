@@ -3,6 +3,7 @@
 import pandas as pd
 import openpyxl
 import time
+import warnings
 
 # A method that modifies only one cell
 # The row and col start at 0
@@ -24,29 +25,39 @@ def readCsv(file):
         df = pd.DataFrame()
     return df
 
-def createCsv():
+def createCsvFile(fileName, data=''):
+    if data == '':
+        df = pd.DataFrame()
+    else:
+        df = data
+    df.to_csv(fileName, mode='w', index=False, header=False)
+    return df
+
+def createCsvFrame(size):
     df = pd.DataFrame()
     return df
 
-
-def writeCsv(file, df):
-    df.to_csv(file, index=False, header=False)
+def appendCsv(fileName, df):
+    df.to_csv(fileName, mode='a', index=False, header=False)
 
 # A method that modifies one row of an Csv sheet
 # The row starts at 0
 def modifyRow(row, df, data, appendRows):
-    if max([row, appendRows]) >= len(df):
+    
+    warnings.simplefilter(action='ignore', category=pd.errors.PerformanceWarning)
+    if max([row, appendRows - 1]) >= len(df):
         startTime = time.time()
         lenbefore = len(df)
-        extraRows = max([row, appendRows]) - len(df) + 1
+        extraRows = max([row, appendRows]) - len(df) - 1
         df = pd.concat([df, pd.DataFrame([[''] * len(df.columns)] * extraRows)], ignore_index=True)
-        #print("Expanding the rows from", lenbefore, "to", len(df), "took", round(time.time() - startTime, 2), "seconds.")
+        # print("Expanding the rows from", lenbefore, "to", len(df) + 1, "took", round(time.time() - startTime, 2), "seconds.")
     
     if len(data) > len(df.columns):
         extraCols = len(data) - len(df.columns)
-        print("Expanding the columns from", len(df.columns), "to", len(data), ".")
-        for i in range(len(df.columns), len(data)):
-            df[f'Column_{len(df.columns) + 1}'] = pd.NA
+        # print("Expanding the columns from", len(df.columns), "to", len(data))
+        df = pd.concat([df, pd.DataFrame([[''] * len(data)])], ignore_index=True)
+        # for i in range(len(df.columns), len(data)):
+        #     df[f'Column_{len(df.columns) + 1}'] = pd.NA
     df.iloc[row,0:len(data)] = data
     return df
 
