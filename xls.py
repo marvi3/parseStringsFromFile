@@ -44,7 +44,8 @@ def modifyRow(row, df, data, appendRows):
     
     if len(data) > len(df.columns):
         extraCols = len(data) - len(df.columns)
-        for i in range(extraCols):
+        print("Expanding the columns from", len(df.columns), "to", len(data), ".")
+        for i in range(len(df.columns), len(data)):
             df[f'Column_{len(df.columns) + 1}'] = pd.NA
     df.iloc[row,0:len(data)] = data
     return df
