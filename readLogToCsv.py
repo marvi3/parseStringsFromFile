@@ -89,6 +89,17 @@ prepareTime = 0
 splitTime = 0
 writeTime = 0
 fileContent = "\n\n\n" + fileContent
+entryResult = []
+endIndex = fileContent.find("__________", endIndex + 1)
+if endIndex != -1:
+    logEntryString = fileContent[startIndex:endIndex]
+    entryResult.append(logEntryString.splitlines()[3])
+    startIndex = endIndex
+    entryResult = entryResult + parseString.getSubstringLengthList(logEntryString, startStringList, stringLengthList, occList, True, cutFromBeginningList)
+    df = xls.modifyRow(entryNumber % reportEveryRounds, df, range(len(entryResult)), reportEveryRounds)
+    entryNumber += 1
+    df = xls.modifyRow(entryNumber % reportEveryRounds, df, entryResult, reportEveryRounds)
+    entryNumber += 1
 if int(sys.argv[3]) == 0:
     print("Processing the whole log-file.")
     partStartTime = time.time()
