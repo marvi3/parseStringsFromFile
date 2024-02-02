@@ -116,6 +116,8 @@ if int(sys.argv[3]) == 0:
             df = xls.modifyRow(entryNumber % reportEveryRounds, df, entryResult, reportEveryRounds)
             entryNumber += 1
             if entryNumber % reportEveryRounds == 0:
+                df.iloc[:, 13:] = df.iloc[:, 13:].astype(str).map(lambda x: x.replace(',', '.'))
+                df.iloc[:, 13:] = df.iloc[:, 13:].astype(float)
                 xls.appendCsv(fileName, df)
                 endTime = time.time()
                 print("Processing the last", reportEveryRounds, "out of", entryNumber, "total logEntries took", round(endTime - roundTime, 2), "seconds which is a total of", round(endTime-startTime, 2), "seconds until now.")
@@ -126,6 +128,8 @@ if int(sys.argv[3]) == 0:
             df.replace(r'^s*$', float('NaN'), regex = True)
             df.dropna(inplace = True)
             df.replace(float('NaN'), '', regex = True)
+            df.iloc[:, 13:] = df.iloc[:, 13:].astype(str).map(lambda x: x.replace(',', '.'))
+            df.iloc[:, 13:] = df.iloc[:, 13:].astype(float, errors='ignore')
             xls.appendCsv(fileName, df)
             endTime = time.time()
             print("Processing all", entryNumber, "logEntries took", round(endTime-startTime, 2), "seconds.")
