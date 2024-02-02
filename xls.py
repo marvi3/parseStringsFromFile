@@ -26,15 +26,16 @@ def readCsv(file):
     return df
 
 def createCsvFile(fileName, data=''):
-    if data == '':
+    if type(data) is str:
         df = pd.DataFrame()
     else:
         df = data
+    print("Writing to file", fileName)
     df.to_csv(fileName, mode='w', index=False, header=False)
     return df
 
-def createCsvFrame(size):
-    df = pd.DataFrame()
+def createCsvFrame(col = 1, rows = 1):
+    df = pd.DataFrame([[''] * col] * rows)
     return df
 
 def appendCsv(fileName, df):

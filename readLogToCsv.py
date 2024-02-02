@@ -125,7 +125,7 @@ if int(sys.argv[3]) == 0:
                 endTime = time.time()
                 print("Processing the last", reportEveryRounds, "out of", entryNumber, "total logEntries took", round(endTime - roundTime, 2), "seconds which is a total of", round(endTime-startTime, 2), "seconds until now.")
                 #print("writing the results took", round(writeTime, 2), "seconds.")
-                df = xls.createCsvFrame(fileName)
+                df = xls.createCsvFrame(len(entryResult), reportEveryRounds)
                 roundTime = time.time()
         else:
             df.replace(r'^s*$', float('NaN'), regex = True)
