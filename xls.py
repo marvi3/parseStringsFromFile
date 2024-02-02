@@ -25,8 +25,11 @@ def readCsv(file):
         df = pd.DataFrame()
     return df
 
-def createCsvFile(fileName):
-    df = pd.DataFrame()
+def createCsvFile(fileName, data=''):
+    if data == '':
+        df = pd.DataFrame()
+    else:
+        df = data
     df.to_csv(fileName, mode='w', index=False, header=False)
     return df
 
