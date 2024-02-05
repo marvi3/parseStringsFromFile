@@ -11,7 +11,7 @@ from operator import add
 
 # Checks if less then 3 arguments are existing.
 if len(sys.argv) < 4:
-    print("Usage: python readDataToCsv.py fileNameToBeRead csvToWrite.csv, numOfLogEntries")
+    print("Usage: python readDataToCsv.py fileNameToBeRead csvToWrite.csv numOfLogEntries [optional writeEveryXRoundsToFile, default 10.000]")
     sys.exit(0)
 
 startTime = time.time()
