@@ -18,10 +18,11 @@ def copyColumns(inputFile, outputFile, columnsToCopy, sumRight=1):
         # Create a new DataFrame with the specified columns
         dfSelectedColumns = pd.DataFrame()
         for column in columnsToCopy:
-            if columnsToCopy == 0:
+            if column == 0:
                 dfSelectedColumns = pd.concat([dfSelectedColumns, df.iloc[:,int(column)]], axis=1)
+                # print(dfSelectedColumns)
             else:
-                dfSelectedColumns = pd.concat([dfSelectedColumns, df.iloc[:,int(column): int(column) + int(sumRight) - 1].sum(axis=1)], axis=1)
+                dfSelectedColumns = pd.concat([dfSelectedColumns, df.iloc[:,int(column): int(column) + int(sumRight)].sum(axis=1)], axis=1)
 
         print(f"The programm will copy {columnsToCopy} from {inputFile} into {outputFile}")
 
@@ -36,7 +37,7 @@ def copyColumns(inputFile, outputFile, columnsToCopy, sumRight=1):
 if __name__ == "__main__":
     # stuff only to run when not called via 'import' here
     if len(sys.argv) < 4:
-        print("Usage: python copyCsvColumnsIntoNewFile.py csvToBeRead.csv csvToWrite.csv commaSeparatedListOfColumnsToCopy")
+        print("Usage: python copyCsvColumnsIntoNewFile.py csvToBeRead.csv csvToWrite.csv commaSeparatedListOfColumnsToCopy(optional)")
         sys.exit(0)
     if len(sys.argv) > 4:
         copyColumns(sys.argv[1], sys.argv[2], [int(x) for x in sys.argv[3].split(",")], sys.argv[4])
